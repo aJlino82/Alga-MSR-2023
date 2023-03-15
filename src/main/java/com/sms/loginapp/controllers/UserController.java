@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sms.loginapp.models.User;
 import com.sms.loginapp.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/")
 public class UserController {
@@ -37,12 +39,12 @@ public class UserController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public User addUser(@RequestBody User user) {
+	public User addUser(@Valid @RequestBody User user) {
 		return userService.save(user);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<User> update(@PathVariable long id, @RequestBody User user) {
+	public ResponseEntity<User> update(@Valid @PathVariable long id, @RequestBody User user) {
 		if (!userService.existsById(id)) {
 			return ResponseEntity.notFound().build();
 		}
