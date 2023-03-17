@@ -19,10 +19,6 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public List<User> findByName(String name) {
-		return userRepository.findByNameContaining(name);
-	}
-
 	public List<User> findAll() {
 		return userRepository.findAll();
 	}
