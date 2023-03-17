@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,26 +8,17 @@
 </head>
 <body>
 
-    <div>Cadastro</div>
+<div>Cadastro</div>
 
-    <div>
-        <form action="#" method="post" th:action="@{/criar}" th:object="${user}">
-            <input type="hidden" th:field="*{id}">
+<div>
+    <form action="#" method="post" th:action="@{/addUser}" th:object="${user}">
+        <input type="hidden" th:field="*{id}">
+        <input type="text" th:field="*{name}">
 
-            <div>
-                <label for="name">Nome</label>
-                <input type="text" th:field="*{name}" id="name">
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" th:field="*{email}" id="email">
-            </div>
-            <div>
-                <button type="submit">OK</button>
-            </div>
+        <button type="submit">Cadastrar</button>
 
-        </form>
-    </div>
-    
+    </form>
+</div>
+
 </body>
 </html>
