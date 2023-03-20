@@ -5,6 +5,7 @@ import com.sms.loginapp.models.User;
 import com.sms.loginapp.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +25,7 @@ public class MvcUserController {
         return mv;
     }
 
-    @GetMapping("/addView")
+    @GetMapping("/addView") //view adicionar
     public ModelAndView getCadastro(Model model) {
         ModelAndView mv = new ModelAndView("cadastro");
         User user = new User();
@@ -32,9 +33,9 @@ public class MvcUserController {
         return mv;
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/addUser") //metodo
     @ResponseStatus(HttpStatus.CREATED)
-    public ModelAndView addUser(@Valid User user, BindingResult bindingResult) {
+    public ModelAndView addUser(@Valid @DateTimeFormat User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             ModelAndView mv = new ModelAndView("cadastro");
@@ -42,6 +43,14 @@ public class MvcUserController {
         }
         ModelAndView mv = new ModelAndView("index");
         userService.save(user);
+        return mv;
+    }
+
+    @GetMapping("/listView") //view listar
+    public ModelAndView listView(Model model) {
+        ModelAndView mv = new ModelAndView("list");
+        model.addAttribute("userlist", userService.findAll());
+
         return mv;
     }
 

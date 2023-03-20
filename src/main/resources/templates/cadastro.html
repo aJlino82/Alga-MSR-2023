@@ -4,20 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link th:href="@{/dark.css}" rel="stylesheet"/>
     <title>Cadastro</title>
 </head>
 <body>
 
-<div>Cadastro</div>
 
-<div>
-    <form action="#" method="post" th:action="@{/addUser}" th:object="${user}">
-        <input type="hidden" th:field="*{id}">
-        <input type="text" th:field="*{name}">
+<div class="container">
+    <div class="box">
+        <div class="title">Cadastro</div>
+        <form action="#" method="post" th:action="@{/addUser}" th:object="${user}">
+            <input type="hidden" th:field="*{id}">
+            <div>
+                <label for="name">Nome</label>
+                <input type="text" th:field="*{name}" id="name" placeholder="Nome">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" th:field="*{email}" id="email" placeholder="Email">
+            </div>
+            <div>
+                <label for="phone">Telefone</label>
+                <input type="text" th:field="*{phone}" id="phone" placeholder="Fone">
+            </div>
+            <div>
+                <label for="bdate">Data de Nascimeto</label>
+                <input type="date" th:field="*{bDate}" id="bdate" placeholder="Nascimento">
+            </div>
+            <button type="submit" th:value="Submit">Cadastrar</button>
+            <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
 
-        <button type="submit">Cadastrar</button>
-
-    </form>
+        </form>
+    </div>
+    <div>
+        <button type="button">
+            <a th:href="@{/}">Principal</a>
+        </button>
+    </div>
 </div>
 
 </body>
