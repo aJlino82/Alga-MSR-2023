@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     <link th:href="@{/dark.css}" rel="stylesheet"/>
     <title>Cadastro</title>
 </head>
@@ -19,18 +20,23 @@
             <div>
                 <label for="name">Nome</label>
                 <input type="text" th:field="*{name}" id="name" placeholder="Nome">
+                <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"/>
+
             </div>
             <div>
                 <label for="email">Email</label>
                 <input type="text" th:field="*{email}" id="email" placeholder="Email">
+                <p th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}"/>
             </div>
             <div>
                 <label for="phone">Telefone</label>
                 <input type="text" th:field="*{phone}" id="phone" placeholder="Fone">
+                <p th:if="${#fields.hasErrors('phone')}" th:errorclass="error" th:errors="*{phone}"/>
             </div>
             <div>
                 <label for="bdate">Data de Nascimeto</label>
-                <input type="date" th:field="*{bDate}" id="bdate" placeholder="Nascimento">
+                <input type="text" th:field="*{bDate}" id="bdate" placeholder="Nascimento">
+                <p th:if="${#fields.hasErrors('bDate')}" th:errorclass="error" th:errors="*{bDate}"/>
             </div>
             <button type="submit" th:value="Submit">Cadastrar</button>
             <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
@@ -44,5 +50,15 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </body>
+<script>
+  $( function() {
+    $( "#bdate" ).datepicker();
+        locale: 'pt-br'
+  } );
+
+
+</script>
 </html>

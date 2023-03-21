@@ -33,6 +33,10 @@ a:hover {
       align-items: center;
 }
 
+.error {
+    color: red;
+}
+
 .title {
     margin-bottom: 6px;
 }

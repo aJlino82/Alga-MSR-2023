@@ -5,12 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -19,23 +17,22 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
-    @Size(max = 128)
+    @NotBlank(message = "O campo não pode estar em branco.")
+    @Size(message = "O nome deve conter entre 5 e 128 letras.", min = 5, max = 128)
     private String name;
-    @Size(max = 128)
+    @NotBlank(message = "O campo não pode estar em branco.")
+    @Size(message = "O email deve conter entre 5 e 64 letras.", min = 5, max = 64)
     private String email;
 
-    @PastOrPresent(message = "A data de nascimento não pode ser maior que a data atual.")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDateTime bDate;
-    @Size(max = 20)
+    private Date bDate;
+    @Size(message = "O telefone deve conter o dd e o numero.", min = 8, max = 20)
     private String phone;
 
     public User() {
         super();
     }
 
-    public User(Long id, String name, String email, LocalDateTime bDate, String phone) {
+    public User(Long id, String name, String email, Date bDate, String phone) {
         super();
         this.id = id;
         this.name = name;
@@ -68,11 +65,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public LocalDateTime getbDate() {
+    public Date getbDate() {
         return bDate;
     }
 
-    public void setbDate(LocalDateTime bDate) {
+    public void setbDate(Date bDate) {
         this.bDate = bDate;
     }
 

@@ -5,7 +5,6 @@ import com.sms.loginapp.models.User;
 import com.sms.loginapp.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,15 +34,17 @@ public class MvcUserController {
 
     @PostMapping("/addUser") //metodo
     @ResponseStatus(HttpStatus.CREATED)
-    public ModelAndView addUser(@Valid @DateTimeFormat User user, BindingResult bindingResult) {
+    public ModelAndView addUser(@Valid User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            ModelAndView mv = new ModelAndView("cadastro");
-            System.out.println("Erro ao criar usuário.");
+            ModelAndView mve = new ModelAndView("cadastro");
+            System.out.println("Erro ao criar usuario.");
+            return mve;
+        } else {
+            ModelAndView mv = new ModelAndView("index");
+            userService.save(user);
+            return mv;
         }
-        ModelAndView mv = new ModelAndView("index");
-        userService.save(user);
-        return mv;
     }
 
     @GetMapping("/listView") //view listar
