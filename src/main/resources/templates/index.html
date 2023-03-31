@@ -10,11 +10,16 @@
 </head>
 <body>
 
-<div class="container">
+<img th:src="@{/business-people.png}" class="m-1" width="40" height="40"/>
+
+<div class="container2">
     <div>
         <form th:action="@{/logout}" method="post">
             <button type="submit" value="Sair">Sair</button>
         </form>
+    </div>
+    <div>
+        <h3>Bem vindo(a), <span sec:authentication="name"></span>!</h3>
     </div>
 
     <div class="box">

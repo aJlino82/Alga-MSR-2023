@@ -1,57 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Font Awesome -->
-    <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-            rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
     <!-- Google Fonts -->
-    <link
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-            rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
     <!-- MDB -->
-    <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
-            rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet"/>
     <!-- MDB -->
-    <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
-    ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <!-- Bootstrap -->
+
+    <style>
+        html,
+        body {
+          height: 100%;
+        }
+
+        body {
+          display: flex;
+          align-items: center;
+          padding-top: 40px;
+          padding-bottom: 40px;
+          background-color: #f5f5f5;
+        }
+
+        .form-signin {
+          max-width: 330px;
+          padding: 15px;
+        }
+
+        .form-signin .form-floating:focus-within {
+          z-index: 2;
+        }
+
+        .form-signin input[type="email"] {
+          margin-bottom: -1px;
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+          margin-bottom: 10px;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+
+    </style>
+
+
     <title>Login</title>
 </head>
-<body>
+<body class="text-center">
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md"></div>
-        <div class="col-md text-center">
-            <form th:action="@{/login}" method="post">
-                <div>
-                    <div th:if="${param.error}">Verifique seu usuário ou senha!</div>
-                    <div th:if="${param.logout}">Você está desconectado</div>
-                </div>
-                <div class="form-outline mb-4">
-                    <input id="form2Example1" type="text" name="username" placeholder="Usuário: ">
-                </div>
-                <div class="form-outline mb-4">
-                    <input id="senha" type="password" name="password" placeholder="Senha: ">
-                </div>
-                <div class="row mb-4">
-                    <input class="btn btn-primary" type="submit" value="Logar">
-                </div>
-
-            </form>
+<main class="form-signin w-100 m-auto">
+    <form th:action="@{/login}" method="post">
+        <h1 class="h3 mb-3 fw-normal">Sistema de Impressão de Contratos</h1>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Usuário: ">
+            <label for="floatingInput">Usuário</label>
         </div>
-        <div class="col-md"></div>
-    </div>
-</div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Senha: ">
+            <label for="floatingPassword">Senha</label>
+        </div>
+        <div class="mb-3">
+            <div th:if="${param.error}">Verifique seu usuário ou senha!</div>
+            <div th:if="${param.logout}">Você está desconectado</div>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Logar</button>
+        <p class="mt-5 mb-3 text-body-secondary">&copy; 2022–2023 - Diretoria de Tecnologia da Informação na Saúde </p>
+    </form>
+</main>
+
 
 </body>
 </html>
+
