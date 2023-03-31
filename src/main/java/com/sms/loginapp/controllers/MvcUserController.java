@@ -18,6 +18,12 @@ public class MvcUserController {
     @Autowired
     UserService userService;
 
+    @GetMapping("/login")
+    public ModelAndView loginView() {
+        ModelAndView mv = new ModelAndView("login");
+        return mv;
+    }
+
     @GetMapping
     public ModelAndView getIndex() {
         ModelAndView mv = new ModelAndView("index");
