@@ -28,7 +28,9 @@ public class SecurityConfiguration {
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .permitAll()
+                .and()
+                .rememberMe();
         return httpSecurity.build();
     }
 

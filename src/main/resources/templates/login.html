@@ -69,6 +69,13 @@
             <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Senha: ">
             <label for="floatingPassword">Senha</label>
         </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me" name="remember-me"> Remember me
+            </label>
+        </div>
+
         <div class="mb-3">
             <div th:if="${param.error}">Verifique seu usuário ou senha!</div>
             <div th:if="${param.logout}">Você está desconectado</div>

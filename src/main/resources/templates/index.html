@@ -23,12 +23,24 @@
     </div>
 
     <div class="box">
-        <button sec:authorize="hasRole('ADMIN')" type="button">
-            <a th:href="@{/addView}">Cadastrar Usuario</a>
-        </button>
-        <button sec:authorize="hasRole('EDITOR')" type="button">
-            <a th:href="@{/listView}">Listar Usuario</a>
-        </button>
+        <ul>
+            <li>
+                <button sec:authorize="hasRole('EDITOR')" type="button">
+                    <a th:href="@{/listView}">Listar Usuario</a>
+                </button>
+            </li>
+            <li>
+                <button sec:authorize="hasRole('ADMIN')" type="button">
+                    <a th:href="@{/addView}">Cadastrar Usuario</a>
+                </button>
+            </li>
+            <li>
+                <button sec:authorize="hasRole('ADMIN')" type="button">
+                    <a th:href="@{/pdf/gerar}">Relatório</a>
+                </button>
+            </li>
+
+        </ul>
     </div>
 </div>
 </body>
