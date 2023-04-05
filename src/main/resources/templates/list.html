@@ -36,7 +36,10 @@
                 <td th:text="${user.bDate}">birth date</td>
                 <td>
                     <button sec:authorize="hasRole('EDITOR')">Editar</button>
+                    <button sec:authorize="hasRole('EDITOR')" th:href="@{/pdf/gerar/{id}(id=${user.id})}">Contrato
+                    </button>
                     <button sec:authorize="hasRole('ADMIN')">Deletar</button>
+
                 </td>
             </tr>
             </tbody>
