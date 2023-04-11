@@ -23,8 +23,8 @@ public class ApiUserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> listById(@PathVariable("id") long id) {
-        return userService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public User findById(Long id) {
+        return userService.findById(id);
     }
 
     @PostMapping

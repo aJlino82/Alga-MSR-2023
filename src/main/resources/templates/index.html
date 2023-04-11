@@ -35,6 +35,16 @@
                 </button>
             </li>
             <li>
+                <button sec:authorize="hasRole('EDITOR')" type="button">
+                    <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/{id}(id=${2})}">Frase</a>
+                </button>
+            </li>
+            <li>
+                <button sec:authorize="hasRole('EDITOR')" type="button">
+                    <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/list}" >Listar Usuarios</a>
+                </button>
+            </li>
+            <li>
                 <button sec:authorize="hasRole('ADMIN')" type="button">
                     <a th:href="@{/pdf/gerar}" target="_blank">Relatório</a>
                 </button>
