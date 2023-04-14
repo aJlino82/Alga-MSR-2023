@@ -6,12 +6,13 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sms.loginapp.models.User;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class ContratoEmLoteA implements Contrato {
 
@@ -40,7 +41,7 @@ public class ContratoEmLoteA implements Contrato {
     }
 
     @Override
-    public void printList(List<User> userList, int n) {
+    public synchronized void printList(List<User> userList, int n) {
 
         String path = "src/main/resources/static/output/contrato-" + userList.get(n).getName() + ".pdf";
 
@@ -55,6 +56,56 @@ public class ContratoEmLoteA implements Contrato {
             throw new RuntimeException(e);
         }
         document.close();
+
+        //chama metodo que compacta os carquivos de uma pasta
+        try {
+            compactFiles("src/main/resources/static/output", "src/main/resources/static/zipados/contratos.zip");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //chama metodos que apaga todos os arquivos de uma pasta
+
+        //deleteAllFilesInFolder("src/main/resources/static/output");
+
+
     }
 
+    @Override
+    public synchronized void compactFiles(String pastaOrigem, String arquivoDestino) throws IOException {
+        try {
+            FileOutputStream fos = new FileOutputStream(arquivoDestino);
+            ZipOutputStream zos = new ZipOutputStream(fos);
+            File pasta = new File(pastaOrigem);
+            for (File arquivo : pasta.listFiles()) {
+                if (arquivo.getName().endsWith(".pdf")) {
+                    FileInputStream fis = new FileInputStream(arquivo);
+                    ZipEntry entrada = new ZipEntry(arquivo.getName());
+                    zos.putNextEntry(entrada);
+                    byte[] buffer = new byte[4096];
+                    int bytesLidos = 0;
+                    while ((bytesLidos = fis.read(buffer)) > 0) {
+                        zos.write(buffer, 0, bytesLidos);
+                    }
+                    fis.close();
+                    zos.closeEntry();
+                }
+            }
+            zos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public synchronized static void deleteAllFilesInFolder(String folderPath) {
+        File folder = new File(folderPath);
+        File[] files = folder.listFiles();
+
+        for (File file : files) {
+            if (file.isFile()) {
+                file.delete();
+            }
+        }
+    }
 }

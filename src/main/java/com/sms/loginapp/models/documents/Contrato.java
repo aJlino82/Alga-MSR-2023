@@ -2,6 +2,7 @@ package com.sms.loginapp.models.documents;
 
 import com.sms.loginapp.models.User;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface Contrato {
@@ -15,5 +16,6 @@ public interface Contrato {
     public void print(String nome);
 
     public void printList(List<User> userList, int n);
+    public void compactFiles(String arqSaida, String arqEntrada) throws IOException;
 
 }

@@ -5,53 +5,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/dark.css}" rel="stylesheet"/>
+    <link th:href="@{/dark2.css}" rel="stylesheet"/>
     <title>Sistema Login</title>
 </head>
 <body>
 
-<img th:src="@{/business-people.png}" class="m-1" width="40" height="40"/>
+<header>
+    <div class="header1">
+        <img th:src="@{/business-people.png}" class="m-1" width="40" height="40"/>
+    </div>
+    <div class="header2">
+        <p>Bem vindo(a), <span sec:authentication="name"></span>!</p>
+    </div>
+</header>
 
-<div class="container2">
-    <div>
+<nav class="menu">
+    <a sec:authorize="hasRole('EDITOR')" th:href="@{/listView}">Listar Usuario</a>
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/addView}">Cadastrar Usuario</a>
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/pdf/gerar}" target="_blank">Relatório</a>
+
+    <div class="menu-log">
         <form th:action="@{/logout}" method="post">
             <button type="submit" value="Sair">Sair</button>
         </form>
     </div>
-    <div>
-        <h3>Bem vindo(a), <span sec:authentication="name"></span>!</h3>
-    </div>
+</nav>
 
-    <div class="box">
+<section>
+    <nav>
         <ul>
             <li>
-                <button sec:authorize="hasRole('EDITOR')" type="button">
-                    <a th:href="@{/listView}">Listar Usuario</a>
-                </button>
+                <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/{id}(id=${2})}">Frase</a>
             </li>
             <li>
-                <button sec:authorize="hasRole('ADMIN')" type="button">
-                    <a th:href="@{/addView}">Cadastrar Usuario</a>
-                </button>
+                <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/list}">Listar Usuarios</a>
             </li>
-            <li>
-                <button sec:authorize="hasRole('EDITOR')" type="button">
-                    <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/{id}(id=${2})}">Frase</a>
-                </button>
-            </li>
-            <li>
-                <button sec:authorize="hasRole('EDITOR')" type="button">
-                    <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/list}" >Listar Usuarios</a>
-                </button>
-            </li>
-            <li>
-                <button sec:authorize="hasRole('ADMIN')" type="button">
-                    <a th:href="@{/pdf/gerar}" target="_blank">Relatório</a>
-                </button>
-            </li>
-
         </ul>
-    </div>
-</div>
+    </nav>
+</section>
+
+<footer>
+    <p>Rodapé</p>
+</footer>
+
 </body>
 </html>

@@ -47,6 +47,20 @@ a:hover {
     height: 300px;
 }
 
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+}
+
+
 table {
   border-collapse: collapse;
 }

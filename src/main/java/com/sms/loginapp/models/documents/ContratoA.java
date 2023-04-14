@@ -30,4 +30,9 @@ public class ContratoA implements Contrato {
     public void printList(List<User> userList, int n) {
 
     }
+
+    @Override
+    public void compactFiles(String arqSaida, String arqEntrada) {
+
+    }
 }
