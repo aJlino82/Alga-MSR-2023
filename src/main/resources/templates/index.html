@@ -20,9 +20,9 @@
 </header>
 
 <nav class="menu">
-    <a sec:authorize="hasRole('EDITOR')" th:href="@{/listView}">Listar Usuario</a>
-    <a sec:authorize="hasRole('ADMIN')" th:href="@{/addView}">Cadastrar Usuario</a>
-    <a sec:authorize="hasRole('ADMIN')" th:href="@{/pdf/gerar}" target="_blank">Relatório</a>
+    <a sec:authorize="hasRole('EDITOR')" th:href="@{/listView}">Usuarios</a>
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/addView}">Cadastro de Usuario</a>
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/pdf/gerar}" target="_blank">Relatórios</a>
 
     <div class="menu-log">
         <form th:action="@{/logout}" method="post">
@@ -35,10 +35,10 @@
     <nav>
         <ul>
             <li>
-                <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/{id}(id=${2})}">Frase</a>
+                <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/{id}(id=${2})}">Frase teste</a>
             </li>
             <li>
-                <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/list}">Listar Usuarios</a>
+                <a sec:authorize="hasRole('EDITOR')" th:href="@{/frase/list}">Contratos em lote</a>
             </li>
         </ul>
     </nav>

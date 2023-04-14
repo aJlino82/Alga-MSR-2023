@@ -35,16 +35,20 @@ public class PdfButtController {
         List<User> userList = userService.findAll();
         System.out.println("Otamanho da lista é: " + userList.size());
 
-        int n = 0;
+        int n = 0; //variavel de incremento para compor nome do arquivo.
 
+        //for que chama método que gera contratos el lote.
         for (int i = 0; i < userList.size(); i++) {
             n = i;
+
             ContratoEmLoteA contratoEmLoteA = new ContratoEmLoteA();
             contratoEmLoteA.printList(userList, n);
             System.out.println("Valor de i :" + i);
-
         }
 
+        //apos ser criado o arquivo zip esse metodo apaga os arquivos pdf
+        ContratoEmLoteA contratoEmLoteA = new ContratoEmLoteA();
+        contratoEmLoteA.deleteAllFilesInFolder("src/main/resources/static/output");
 
     }
 }

@@ -16,6 +16,11 @@ public interface Contrato {
     public void print(String nome);
 
     public void printList(List<User> userList, int n);
+
+    public void createFiles(List<User> userList, int n);
+
     public void compactFiles(String arqSaida, String arqEntrada) throws IOException;
+
+    public void deleteAllFilesInFolder(String folderPath);
 
 }

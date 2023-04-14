@@ -32,7 +32,17 @@ public class ContratoA implements Contrato {
     }
 
     @Override
+    public void createFiles(List<User> userList, int n) {
+
+    }
+
+    @Override
     public void compactFiles(String arqSaida, String arqEntrada) {
+
+    }
+
+    @Override
+    public void deleteAllFilesInFolder(String folderPath) {
 
     }
 }

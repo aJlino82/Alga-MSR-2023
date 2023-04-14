@@ -41,8 +41,21 @@ public class ContratoEmLoteA implements Contrato {
     }
 
     @Override
-    public synchronized void printList(List<User> userList, int n) {
+    public void printList(List<User> userList, int n) {
+        //1 - chama o metodo que cria os arquivos
+        createFiles(userList, n);
 
+        //2 - chama metodo que compacta os carquivos de uma pasta
+        try {
+            compactFiles("src/main/resources/static/output", "src/main/resources/static/zipados/contratos.zip");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public synchronized void createFiles(List<User> userList, int n) {
         String path = "src/main/resources/static/output/contrato-" + userList.get(n).getName() + ".pdf";
 
         try {
@@ -56,19 +69,6 @@ public class ContratoEmLoteA implements Contrato {
             throw new RuntimeException(e);
         }
         document.close();
-
-        //chama metodo que compacta os carquivos de uma pasta
-        try {
-            compactFiles("src/main/resources/static/output", "src/main/resources/static/zipados/contratos.zip");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        //chama metodos que apaga todos os arquivos de uma pasta
-
-        //deleteAllFilesInFolder("src/main/resources/static/output");
-
-
     }
 
     @Override
@@ -98,7 +98,8 @@ public class ContratoEmLoteA implements Contrato {
 
     }
 
-    public synchronized static void deleteAllFilesInFolder(String folderPath) {
+    @Override
+    public synchronized void deleteAllFilesInFolder(String folderPath) {
         File folder = new File(folderPath);
         File[] files = folder.listFiles();
 
